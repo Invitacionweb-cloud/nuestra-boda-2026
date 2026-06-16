@@ -1,0 +1,68 @@
+/*
+ * ============================================================
+ * VARIABLES CSS GLOBALES
+ * ============================================================
+ * Este archivo centraliza la paleta de colores, tipografías,
+ * espaciados y otras variables reutilizables en todo el proyecto.
+ * Modificar estos valores actualiza consistentemente el diseño.
+ * ============================================================
+ */
+
+:root {
+    /* ===== PALETA DE COLORES (según especificación estricta) ===== */
+    --bg-principal:      #FDFBF7;   /* Blanco perlado / Marfil - fondo principal */
+    --bg-secundario:     #F4EFE6;   /* Arena muy suave - para intercalar secciones */
+    --text-main:         #4A4A4A;   /* Gris carbón oscuro - texto de lectura */
+    --text-light:        #6B6B6B;   /* Gris medio - texto secundario */
+    --text-muted:        #8A8A8A;   /* Gris claro - textos auxiliares */
+    --accent-gold:       #C5A059;   /* Dorado suave - nombres, botones, líneas divisorias */
+    --accent-gold-hover: #B08A3E;   /* Dorado más intenso para hover en botones */
+    --accent-gold-light: #DCC89A;   /* Dorado muy claro para fondos decorativos */
+    --white-pure:        #FFFFFF;   /* Blanco puro para tarjetas y contrastes */
+    --overlay-dark:      rgba(0, 0, 0, 0.55); /* Overlay oscuro para hero */
+
+    /* ===== TIPOGRAFÍA ===== */
+    --font-titulos:      'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+    --font-cuerpo:       'Work Sans', 'Segoe UI', Helvetica, Arial, sans-serif;
+
+    /* ===== TAMAÑOS TIPOGRÁFICOS (Escala modular ajustada) ===== */
+    --texto-xs:          0.75rem;    /* 12px */
+    --texto-sm:          0.875rem;   /* 14px */
+    --texto-base:        1rem;       /* 16px */
+    --texto-md:          1.125rem;   /* 18px */
+    --texto-lg:          1.25rem;    /* 20px */
+    --texto-xl:          1.5rem;     /* 24px */
+    --texto-2xl:         2rem;       /* 32px */
+    --texto-3xl:         2.5rem;     /* 40px */
+    --texto-4xl:         3.5rem;     /* 56px */
+
+    /* ===== ESPACIADO ===== */
+    --espaciado-xs:      0.5rem;
+    --espaciado-sm:      0.75rem;
+    --espaciado-md:      1rem;
+    --espaciado-lg:      1.5rem;
+    --espaciado-xl:      2rem;
+    --espaciado-2xl:     3rem;
+    --espaciado-3xl:     4rem;
+    --espaciado-4xl:     6rem;
+
+    /* ===== BORDES Y SOMBRAS ===== */
+    --borde-suave:       1px solid rgba(197, 160, 89, 0.3);
+    --borde-dorado:      1px solid var(--accent-gold);
+    --radio-borde-sm:    6px;
+    --radio-borde-md:    10px;
+    --radio-borde-lg:    16px;
+    --radio-borde-xl:    24px;
+    --sombra-suave:      0 4px 20px rgba(0, 0, 0, 0.06);
+    --sombra-media:      0 8px 30px rgba(0, 0, 0, 0.10);
+    --sombra-dorada:     0 4px 15px rgba(197, 160, 89, 0.25);
+
+    /* ===== TRANSICIONES ===== */
+    --transicion-rapida: 0.2s ease;
+    --transicion-media:  0.35s ease;
+    --transicion-lenta:  0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
+
+    /* ===== ANIMACIONES ===== */
+    --duracion-fade-in:  0.8s;
+    --desplazamiento-fade: 40px;
+}

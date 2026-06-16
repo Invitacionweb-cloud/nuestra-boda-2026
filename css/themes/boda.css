@@ -1,0 +1,628 @@
+/*
+ * ============================================================
+ * ESTILOS TEMÁTICOS DE LA INVITACIÓN DE BODA
+ * ============================================================
+ * Estilos específicos para cada sección de la invitación,
+ * animaciones del sobre virtual, galería, y decoraciones.
+ * Se asume mobile-first; los media queries amplían para desktop.
+ * ============================================================
+ */
+
+/* =============================================================
+ * 1. PANTALLA DE BIENVENIDA - SOBRE VIRTUAL
+ * ============================================================= */
+.sobre-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(
+        160deg,
+        var(--bg-principal) 0%,
+        var(--bg-secundario) 40%,
+        #E8DFD0 100%
+    );
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.7s ease,
+                visibility 0.7s ease;
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Estado cuando el sobre se oculta (tras abrir) */
+.sobre-overlay.oculto {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.sobre-container {
+    text-align: center;
+    padding: var(--espaciado-xl);
+}
+
+/* Gráfico decorativo del sobre */
+.sobre-grafico {
+    position: relative;
+    width: 140px;
+    height: 110px;
+    margin: 0 auto var(--espaciado-xl);
+    perspective: 600px;
+}
+
+.sobre-cuerpo {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(145deg, #F5EDDC, #E8D9C0);
+    border: 2px solid var(--accent-gold-light);
+    border-radius: 6px 6px 4px 4px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.10);
+    overflow: visible;
+}
+
+/* Solapa del sobre (parte superior que se "abre") */
+.sobre-solapa {
+    position: absolute;
+    top: 0;
+    left: -2px;
+    right: -2px;
+    height: 70px;
+    background: linear-gradient(180deg, #FDFAF3 0%, #F0E6D2 100%);
+    border: 2px solid var(--accent-gold-light);
+    border-bottom: none;
+    border-radius: 4px 4px 0 0;
+    clip-path: polygon(0 0, 50% 70%, 100% 0);
+    transform-origin: top center;
+    transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+}
+
+/* Animación de apertura de la solapa */
+.sobre-overlay.abierto .sobre-solapa {
+    transform: rotateX(-140deg);
+}
+
+/* Sello decorativo en el centro del sobre */
+.sobre-sello {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2.2rem;
+    z-index: 2;
+    transition: opacity 0.4s ease 0.3s;
+    filter: drop-shadow(0 2px 3px rgba(0,0,0,0.15));
+}
+
+.sobre-overlay.abierto .sobre-sello {
+    opacity: 0;
+}
+
+.sobre-titulo {
+    font-family: var(--font-titulos);
+    font-size: var(--texto-3xl);
+    color: var(--accent-gold);
+    margin-bottom: var(--espaciado-sm);
+    letter-spacing: 0.04em;
+}
+
+.sobre-subtitulo {
+    font-family: var(--font-cuerpo);
+    font-size: var(--texto-md);
+    color: var(--text-light);
+    letter-spacing: 0.08em;
+    margin-bottom: var(--espaciado-xl);
+}
+
+/* Botón "Abrir Invitación" */
+.btn-abrir-sobre {
+    display: inline-block;
+    font-family: var(--font-cuerpo);
+    font-size: var(--texto-base);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    padding: var(--espaciado-md) var(--espaciado-2xl);
+    background-color: var(--accent-gold);
+    color: var(--white-pure);
+    border-radius: var(--radio-borde-xl);
+    box-shadow: var(--sombra-dorada);
+    transition: background-color var(--transicion-rapida),
+                transform var(--transicion-rapida),
+                box-shadow var(--transicion-rapida);
+}
+
+.btn-abrir-sobre:hover {
+    background-color: var(--accent-gold-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(197, 160, 89, 0.35);
+}
+
+.btn-abrir-sobre:active {
+    transform: translateY(0);
+}
+
+/* =============================================================
+ * 2. BOTÓN FLOTANTE DE MÚSICA
+ * ============================================================= */
+.btn-musica-flotante {
+    position: fixed;
+    bottom: 24px;
+    right: 20px;
+    z-index: 900;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: var(--white-pure);
+    border: var(--borde-dorado);
+    box-shadow: var(--sombra-media);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    transition: transform var(--transicion-rapida),
+                box-shadow var(--transicion-rapida),
+                opacity 0.4s ease,
+                visibility 0.4s ease;
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* Se muestra cuando la invitación está abierta */
+.btn-musica-flotante.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.btn-musica-flotante:hover {
+    transform: scale(1.1);
+    box-shadow: var(--sombra-dorada);
+}
+
+/* Indicador de música reproduciéndose */
+.btn-musica-flotante.reproduciendo {
+    animation: pulso-musica 2s infinite;
+}
+
+@keyframes pulso-musica {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(197, 160, 89, 0.4); }
+    50%      { box-shadow: 0 0 0 14px rgba(197, 160, 89, 0); }
+}
+
+.icono-musica {
+    display: block;
+    line-height: 1;
+}
+
+/* =============================================================
+ * 3. CONTENIDO PRINCIPAL (inicialmente oculto)
+ * ============================================================= */
+.contenido-principal {
+    display: none;
+}
+
+.contenido-principal.visible {
+    display: block;
+}
+
+/* =============================================================
+ * 4. SECCIÓN HERO
+ * ============================================================= */
+.seccion-hero {
+    position: relative;
+    padding: 0;
+    background-color: var(--bg-principal);
+}
+
+.hero-imagen-wrapper {
+    position: relative;
+    width: 100%;
+    height: 70vh;
+    min-height: 420px;
+    max-height: 650px;
+    overflow: hidden;
+}
+
+.hero-imagen {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 30%;
+}
+
+.hero-overlay-fondo {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 70%;
+    background: linear-gradient(
+        to top,
+        var(--bg-principal) 0%,
+        rgba(253, 251, 247, 0.85) 35%,
+        rgba(253, 251, 247, 0.4) 70%,
+        transparent 100%
+    );
+}
+
+.hero-contenido {
+    position: relative;
+    text-align: center;
+    padding: var(--espaciado-lg) var(--espaciado-lg) var(--espaciado-2xl);
+    margin-top: -80px;
+    z-index: 2;
+}
+
+.hero-pre-titulo {
+    font-family: var(--font-cuerpo);
+    font-size: var(--texto-sm);
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: var(--espaciado-md);
+}
+
+.hero-nombres {
+    font-family: var(--font-titulos);
+    font-size: var(--texto-2xl);
+    font-weight: 700;
+    color: var(--accent-gold);
+    line-height: 1.3;
+    margin-bottom: var(--espaciado-lg);
+}
+
+.nombre-novio,
+.nombre-novia {
+    display: block;
+}
+
+.hero-y {
+    display: block;
+    font-family: var(--font-titulos);
+    font-size: var(--texto-lg);
+    font-style: italic;
+    color: var(--text-light);
+    margin: var(--espaciado-xs) 0;
+}
+
+.hero-divisor {
+    margin-bottom: var(--espaciado-lg);
+}
+
+.hero-frase {
+    font-family: var(--font-cuerpo);
+    font-size: var(--texto-md);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--text-light);
+    line-height: 1.7;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+/* =============================================================
+ * 5. SECCIÓN FECHA Y HORA
+ * ============================================================= */
+.fecha-destacada {
+    text-align: center;
+    margin-bottom: var(--espaciado-lg);
+}
+
+.fecha-dia {
+    display: block;
+    font-family: var(--font-cuerpo);
+    font-size: var(--texto-md);
+    color: var(--text-light);
+    letter-spacing: 0.06em;
+}
+
+.fecha-numero {
+    display: block;
+    font-family: var(--font-titulos);
+    font-size: var(--texto-4xl);
+    font-weight: 700;
+    color: var(--accent-gold);
+    line-height: 1;
+    margin: var(--espaciado-xs) 0;
+}
+
+.fecha-mes-anio {
+    display: block;
+    font-family: var(--font-cuerpo);
+    font-size: var(--texto-md);
+    color: var(--text-light);
+    letter-spacing: 0.04em;
+}
+
+.hora-destacada {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--espaciado-sm);
+    margin-bottom: var(--espaciado-md);
+}
+
+.hora-reloj {
+    font-size: 1.5rem;
+}
+
+.hora-texto {
+    font-family: var(--font-cuerpo);
+    font-size: var(--texto-xl);
+    font-weight: 500;
+    color: var(--text-main);
+}
+
+/* =============================================================
+ * 6. SECCIÓN LUGAR
+ * ============================================================= */
+.nombre-lugar {
+    font-family: var(--font-titulos);
+    font-size: var(--texto-xl);
+    font-weight: 600;
+    color: var(--text-main);
+    text-align: center;
+    margin-bottom: var(--espaciado-sm);
+}
+
+.direccion-lugar {
+    font-size: var(--texto-base);
+    color: var(--text-light);
+    text-align: center;
+    margin-bottom: var(--espaciado-xl);
+}
+
+.btn-mapa {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--espaciado-sm);
+    max-width: 320px;
+    margin: 0 auto;
+    padding: var(--espaciado-md) var(--espaciado-lg);
+    font-size: var(--texto-base);
+}
+
+/* =============================================================
+ * 7. SECCIÓN GALERÍA - CSS GRID ESTILO MAMPOSTERÍA (MASONRY)
+ * ============================================================= */
+.galeria-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    gap: 10px;
+    padding: 0 var(--espaciado-md);
+    max-width: 700px;
+    margin: var(--espaciado-xl) auto 0;
+}
+
+/* Distribución tipo mampostería con diferentes alturas */
+.galeria-item {
+    overflow: hidden;
+    border-radius: var(--radio-borde-md);
+    box-shadow: var(--sombra-suave);
+    transition: transform var(--transicion-media),
+                box-shadow var(--transicion-media);
+    background-color: var(--bg-secundario);
+}
+
+.galeria-item:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--sombra-media);
+}
+
+.galeria-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.galeria-item:hover img {
+    transform: scale(1.05);
+}
+
+/*
+ * Distribución con alturas variadas para efecto masonry.
+ * Se usa grid-row: span para que ciertas celdas ocupen más espacio vertical.
+ */
+.galeria-item-1 { grid-row: span 1; aspect-ratio: 3/4; }
+.galeria-item-2 { grid-row: span 1; aspect-ratio: 1/1; }
+.galeria-item-3 { grid-row: span 1; aspect-ratio: 4/3; }
+.galeria-item-4 { grid-row: span 1; aspect-ratio: 1/1; }
+.galeria-item-5 { grid-row: span 1; aspect-ratio: 3/4; }
+.galeria-item-6 { grid-row: span 1; aspect-ratio: 4/3; }
+
+/* =============================================================
+ * 8. SECCIÓN REGALO
+ * ============================================================= */
+.icono-regalo {
+    font-size: 2.5rem;
+}
+
+.tarjeta-regalo {
+    background-color: var(--white-pure);
+    border: var(--borde-suave);
+    border-radius: var(--radio-borde-lg);
+    padding: var(--espaciado-xl) var(--espaciado-lg);
+    text-align: center;
+    max-width: 450px;
+    margin: 0 auto;
+    box-shadow: var(--sombra-suave);
+}
+
+.icono-sobre-regalo {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: var(--espaciado-md);
+}
+
+.texto-regalo {
+    font-size: var(--texto-md);
+    color: var(--text-main);
+    line-height: 1.7;
+    margin-bottom: var(--espaciado-md);
+}
+
+.texto-regalo-secundario {
+    font-family: var(--font-titulos);
+    font-size: var(--texto-lg);
+    font-style: italic;
+    color: var(--accent-gold);
+}
+
+/* =============================================================
+ * 9. SECCIÓN RSVP
+ * ============================================================= */
+.btn-rsvp {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--espaciado-sm);
+    max-width: 340px;
+    margin: var(--espaciado-lg) auto 0;
+    padding: var(--espaciado-lg) var(--espaciado-xl);
+    font-size: var(--texto-lg);
+    font-weight: 600;
+    letter-spacing: 0.03em;
+}
+
+/* =============================================================
+ * 10. FOOTER
+ * ============================================================= */
+.seccion-footer {
+    background-color: var(--bg-secundario);
+    text-align: center;
+    padding: var(--espaciado-2xl) var(--espaciado-md);
+}
+
+.footer-nombres {
+    font-family: var(--font-titulos);
+    font-size: var(--texto-lg);
+    color: var(--accent-gold);
+    margin-bottom: var(--espaciado-md);
+}
+
+.footer-divisor {
+    margin-bottom: var(--espaciado-md);
+}
+
+.footer-fecha {
+    font-family: var(--font-cuerpo);
+    font-size: var(--texto-base);
+    color: var(--text-light);
+    margin-bottom: var(--espaciado-sm);
+}
+
+.footer-despedida {
+    font-family: var(--font-titulos);
+    font-size: var(--texto-xl);
+    font-style: italic;
+    color: var(--accent-gold);
+    margin-top: var(--espaciado-md);
+}
+
+/* =============================================================
+ * 11. MEDIA QUERIES - TABLET Y DESKTOP
+ * ============================================================= */
+
+/* Tablet (768px en adelante) */
+@media (min-width: 768px) {
+    .hero-nombres {
+        font-size: var(--texto-3xl);
+    }
+
+    .hero-y {
+        font-size: var(--texto-xl);
+    }
+
+    .nombre-novio,
+    .nombre-novia {
+        display: inline;
+    }
+
+    .hero-y {
+        display: inline;
+        margin: 0 var(--espaciado-sm);
+    }
+
+    .fecha-numero {
+        font-size: 5rem;
+    }
+
+    .titulo-seccion {
+        font-size: var(--texto-3xl);
+    }
+
+    /* Galería: 3 columnas en tablet */
+    .galeria-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+    }
+
+    /* Variamos los spans para un efecto más dinámico */
+    .galeria-item-1 { grid-row: span 2; aspect-ratio: auto; }
+    .galeria-item-3 { grid-row: span 2; aspect-ratio: auto; }
+    .galeria-item-5 { grid-row: span 2; aspect-ratio: auto; }
+
+    .btn-musica-flotante {
+        bottom: 30px;
+        right: 30px;
+        width: 56px;
+        height: 56px;
+        font-size: 1.5rem;
+    }
+}
+
+/* Desktop (1024px en adelante) */
+@media (min-width: 1024px) {
+    .hero-imagen-wrapper {
+        height: 80vh;
+        max-height: 700px;
+    }
+
+    .hero-nombres {
+        font-size: var(--texto-4xl);
+    }
+
+    .hero-frase {
+        font-size: var(--texto-lg);
+        max-width: 600px;
+    }
+
+    .contenedor-centrado {
+        max-width: 700px;
+    }
+
+    .galeria-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+        max-width: 900px;
+    }
+
+    /* En desktop la galería tiene distribución tipo masonry más marcada */
+    .galeria-item-1 { grid-row: span 2; }
+    .galeria-item-2 { grid-row: span 1; }
+    .galeria-item-3 { grid-row: span 2; }
+    .galeria-item-4 { grid-row: span 1; }
+    .galeria-item-5 { grid-row: span 2; }
+    .galeria-item-6 { grid-row: span 1; }
+
+    .tarjeta-regalo {
+        max-width: 500px;
+        padding: var(--espaciado-2xl);
+    }
+}
+
+/* Pantallas grandes (1440px+) */
+@media (min-width: 1440px) {
+    .galeria-grid {
+        max-width: 1000px;
+        gap: 20px;
+    }
+}

@@ -1,0 +1,215 @@
+/*
+ * ============================================================
+ * ESTILOS BASE Y RESETEO
+ * ============================================================
+ * Reseteo de estilos por defecto del navegador, utilidades de
+ * flexbox, configuración base de tipografía y clases reutilizables.
+ * Enfoque mobile-first: los estilos base asumen pantalla pequeña.
+ * ============================================================
+ */
+
+/* ===== RESETEO CSS MODERNO ===== */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Configuración base del documento */
+html {
+    font-size: 100%;                  /* 16px base, respeta preferencias del usuario */
+    scroll-behavior: smooth;          /* Scroll suave al navegar por anclas */
+    -webkit-text-size-adjust: 100%;   /* Previene zoom no deseado en iOS */
+    text-rendering: optimizeLegibility;
+}
+
+body {
+    font-family: var(--font-cuerpo);
+    font-size: var(--texto-base);
+    font-weight: 400;
+    line-height: 1.7;
+    color: var(--text-main);
+    background-color: var(--bg-principal);
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* ===== TIPOGRAFÍA BASE ===== */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-titulos);
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--text-main);
+}
+
+p {
+    margin-bottom: var(--espaciado-md);
+}
+
+a {
+    color: var(--accent-gold);
+    text-decoration: none;
+    transition: color var(--transicion-rapida);
+}
+
+a:hover {
+    color: var(--accent-gold-hover);
+}
+
+/* ===== IMÁGENES RESPONSIVAS POR DEFECTO ===== */
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+/* ===== BOTONES (RESETEO BASE) ===== */
+button {
+    cursor: pointer;
+    font-family: var(--font-cuerpo);
+    border: none;
+    background: none;
+}
+
+button:focus-visible,
+a:focus-visible {
+    outline: 2px solid var(--accent-gold);
+    outline-offset: 3px;
+}
+
+/* ===== UTILIDADES DE LAYOUT ===== */
+.contenedor-centrado {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 0 var(--espaciado-lg);
+}
+
+/* Utilidad para ocultar elementos visualmente pero mantenerlos accesibles */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* ===== SECCIÓN GENÉRICA ===== */
+.seccion {
+    padding: var(--espaciado-3xl) var(--espaciado-md);
+}
+
+/* Intercalado de colores de fondo por sección */
+.seccion:nth-child(odd) {
+    background-color: var(--bg-principal);
+}
+
+.seccion:nth-child(even) {
+    background-color: var(--bg-secundario);
+}
+
+/* ===== TÍTULOS DE SECCIÓN ===== */
+.titulo-seccion {
+    font-family: var(--font-titulos);
+    font-size: var(--texto-2xl);
+    font-weight: 600;
+    color: var(--accent-gold);
+    text-align: center;
+    margin-bottom: var(--espaciado-lg);
+    letter-spacing: 0.02em;
+}
+
+/* ===== ICONOS DECORATIVOS DE SECCIÓN ===== */
+.icono-seccion {
+    display: block;
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: var(--espaciado-sm);
+}
+
+/* ===== TEXTO SECUNDARIO ===== */
+.texto-secundario {
+    font-size: var(--texto-md);
+    color: var(--text-light);
+    text-align: center;
+    max-width: 500px;
+    margin: 0 auto var(--espaciado-lg);
+    line-height: 1.6;
+}
+
+/* ===== DIVISOR DECORATIVO ===== */
+.divisor-linea {
+    display: inline-block;
+    width: 50px;
+    height: 1px;
+    background-color: var(--accent-gold);
+    vertical-align: middle;
+}
+
+.divisor-icono {
+    display: inline-block;
+    color: var(--accent-gold);
+    font-size: var(--texto-sm);
+    margin: 0 var(--espaciado-sm);
+    vertical-align: middle;
+}
+
+/* ===== BOTONES PRINCIPALES ===== */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--espaciado-sm);
+    font-family: var(--font-cuerpo);
+    font-size: var(--texto-base);
+    font-weight: 500;
+    padding: var(--espaciado-md) var(--espaciado-xl);
+    border-radius: var(--radio-borde-xl);
+    background-color: var(--accent-gold);
+    color: var(--white-pure);
+    text-decoration: none;
+    transition: background-color var(--transicion-rapida),
+                transform var(--transicion-rapida),
+                box-shadow var(--transicion-rapida);
+    box-shadow: var(--sombra-dorada);
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: var(--accent-gold-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(197, 160, 89, 0.35);
+    color: var(--white-pure);
+}
+
+.btn:active {
+    transform: translateY(0);
+    box-shadow: var(--sombra-dorada);
+}
+
+.btn-icono {
+    font-size: 1.2em;
+}
+
+/* ===== CLASES PARA FADE-IN OBSERVER ===== */
+/* Estado inicial: invisible y desplazado hacia abajo */
+.fade-in-observer {
+    opacity: 0;
+    transform: translateY(var(--desplazamiento-fade));
+    transition: opacity var(--duracion-fade-in) ease-out,
+                transform var(--duracion-fade-in) ease-out;
+}
+
+/* Estado visible: aplicado por JavaScript al entrar al viewport */
+.fade-in-observer.visible {
+    opacity: 1;
+    transform: translateY(0);
+}

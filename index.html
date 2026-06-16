@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Invitación de boda - Raúl Antonio Guzmán Sánchez y Elvia Montoya Garcia. 26 de Junio del 2026.">
+
+    <title>Raúl & Elvia | Nos Casamos</title>
+
+    <!-- Google Fonts: Serif elegante para títulos + Sans-serif limpia para cuerpo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+
+    <!-- Hojas de estilo en orden de cascada -->
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/themes/boda.css">
+</head>
+<body>
+
+    <!-- ==================== PANTALLA DE BIENVENIDA: SOBRE VIRTUAL ==================== -->
+    <!-- Esta sección cubre el viewport completo y actúa como "sobre cerrado" -->
+    <div id="sobre-overlay" class="sobre-overlay" role="dialog" aria-modal="true" aria-label="Invitación de boda - Abrir sobre">
+        <div class="sobre-container">
+            <!-- Sobre decorativo con animación -->
+            <div class="sobre-grafico" aria-hidden="true">
+                <div class="sobre-cuerpo">
+                    <div class="sobre-solapa"></div>
+                    <div class="sobre-sello">💌</div>
+                </div>
+            </div>
+            <h2 class="sobre-titulo">Raúl & Elvia</h2>
+            <p class="sobre-subtitulo">26 · Junio · 2026</p>
+            <button id="btn-abrir" class="btn-abrir-sobre" aria-label="Abrir invitación de boda">
+                Abrir Invitación
+            </button>
+        </div>
+    </div>
+
+    <!-- ==================== BOTÓN FLOTANTE DE MÚSICA (PLAY/PAUSE) ==================== -->
+    <!-- Se oculta inicialmente y se muestra al abrir la invitación -->
+    <button id="btn-musica" class="btn-musica-flotante" aria-label="Reproducir o pausar música" title="Reproducir / Pausar música">
+        <span class="icono-musica">🎵</span>
+    </button>
+
+    <!-- ==================== CONTENIDO PRINCIPAL DE LA INVITACIÓN ==================== -->
+    <!-- Se revela tras la animación del sobre; inicialmente oculto con display:none -->
+    <main id="contenido-principal" class="contenido-principal">
+
+        <!-- ====== SECCIÓN HERO: FOTO PRINCIPAL, NOMBRES Y FRASE ====== -->
+        <section class="seccion seccion-hero fade-in-observer" id="seccion-hero">
+            <div class="hero-imagen-wrapper">
+                <img
+                    src="assets/img/image.png"
+                    alt="Raúl Antonio Guzmán Sánchez y Elvia Montoya Garcia - Foto principal de boda"
+                    class="hero-imagen"
+                    loading="eager"
+                >
+                <div class="hero-overlay-fondo" aria-hidden="true"></div>
+            </div>
+            <div class="hero-contenido">
+                <p class="hero-pre-titulo">Con la bendición de nuestras familias</p>
+                <h1 class="hero-nombres">
+                    <span class="nombre-novio">Raúl Antonio Guzmán Sánchez</span>
+                    <span class="hero-y">&</span>
+                    <span class="nombre-novia">Elvia Montoya Garcia</span>
+                </h1>
+                <div class="hero-divisor" aria-hidden="true">
+                    <span class="divisor-linea"></span>
+                    <span class="divisor-icono">✦</span>
+                    <span class="divisor-linea"></span>
+                </div>
+                <p class="hero-frase">
+                    Nuestra historia nos ha enseñado que lo mejor siempre llega en el momento indicado. ¡Nos casamos! Nos encantaría que nos acompañen a brindar por el amor, la vida y esta nueva etapa juntos.
+                </p>
+            </div>
+        </section>
+
+        <!-- ====== SECCIÓN: FECHA Y HORA ====== -->
+        <section class="seccion seccion-fecha fade-in-observer" id="seccion-fecha">
+            <div class="contenedor-centrado">
+                <span class="icono-seccion" aria-hidden="true">📅</span>
+                <h2 class="titulo-seccion">Fecha & Hora</h2>
+                <div class="fecha-destacada">
+                    <span class="fecha-dia">Viernes</span>
+                    <span class="fecha-numero">26</span>
+                    <span class="fecha-mes-anio">Junio del 2026</span>
+                </div>
+                <div class="hora-destacada">
+                    <span class="hora-reloj" aria-hidden="true">🕔</span>
+                    <span class="hora-texto">17:00 hrs</span>
+                </div>
+                <p class="texto-secundario">Te esperamos con mucha ilusión para celebrar juntos este día tan especial.</p>
+            </div>
+        </section>
+
+        <!-- ====== SECCIÓN: LUGAR Y UBICACIÓN ====== -->
+        <section class="seccion seccion-lugar fade-in-observer" id="seccion-lugar">
+            <div class="contenedor-centrado">
+                <span class="icono-seccion" aria-hidden="true">📍</span>
+                <h2 class="titulo-seccion">Lugar de la Celebración</h2>
+                <p class="nombre-lugar">Palapa Los Cazadores</p>
+                <p class="direccion-lugar">Un espacio rodeado de naturaleza para celebrar el amor.</p>
+                <a
+                    href="https://maps.app.goo.gl/1msTwZZycKq4PC439?g_st=aw"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="btn btn-mapa"
+                    aria-label="Ver ubicación en Google Maps de Palapa Los Cazadores"
+                >
+                    <span class="btn-icono" aria-hidden="true">🗺️</span>
+                    Ver ubicación en el mapa
+                </a>
+            </div>
+        </section>
+
+        <!-- ====== SECCIÓN: GALERÍA DE FOTOS (6 imágenes con CSS Grid) ====== -->
+        <section class="seccion seccion-galeria fade-in-observer" id="seccion-galeria">
+            <div class="contenedor-centrado">
+                <span class="icono-seccion" aria-hidden="true">📸</span>
+                <h2 class="titulo-seccion">Nuestros Momentos</h2>
+                <p class="texto-secundario">Un pedacito de nuestra historia en imágenes.</p>
+            </div>
+            <div class="galeria-grid">
+                <div class="galeria-item galeria-item-1">
+                    <img src="assets/img/galeria-1.jpg" alt="Momento especial de Raúl y Elvia - Foto 1" loading="lazy">
+                </div>
+                <div class="galeria-item galeria-item-2">
+                    <img src="assets/img/galeria-2.jpg" alt="Momento especial de Raúl y Elvia - Foto 2" loading="lazy">
+                </div>
+                <div class="galeria-item galeria-item-3">
+                    <img src="assets/img/galeria-3.jpg" alt="Momento especial de Raúl y Elvia - Foto 3" loading="lazy">
+                </div>
+                <div class="galeria-item galeria-item-4">
+                    <img src="assets/img/galeria-4.jpg" alt="Momento especial de Raúl y Elvia - Foto 4" loading="lazy">
+                </div>
+                <!-- ======= <div class="galeria-item galeria-item-5">
+                    <img src="assets/img/galeria-5.jpg" alt="Momento especial de Raúl y Elvia - Foto 5" loading="lazy">
+                </div>
+                <div class="galeria-item galeria-item-6">
+                    <img src="assets/img/galeria-6.jpg" alt="Momento especial de Raúl y Elvia - Foto 6" loading="lazy">
+                </div> ======= -->
+            </div>
+        </section>
+
+        <!-- ====== SECCIÓN: REGALO EN EFECTIVO ====== -->
+        <section class="seccion seccion-regalo fade-in-observer" id="seccion-regalo">
+            <div class="contenedor-centrado">
+                <span class="icono-seccion icono-regalo" aria-hidden="true">💝</span>
+                <h2 class="titulo-seccion">Regalo</h2>
+                <div class="tarjeta-regalo">
+                    <span class="icono-sobre-regalo" aria-hidden="true">💌</span>
+                    <p class="texto-regalo">
+                        El mejor regalo es tu presencia, pero si deseas hacernos un obsequio adicional, preferimos regalo en efectivo para nuestra futura vida juntos.
+                    </p>
+                    <p class="texto-regalo-secundario">
+                        ¡Gracias por ser parte de nuestra felicidad!
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ====== SECCIÓN: CONFIRMACIÓN DE ASISTENCIA (RSVP vía WhatsApp) ====== -->
+        <section class="seccion seccion-rsvp fade-in-observer" id="seccion-rsvp">
+            <div class="contenedor-centrado">
+                <span class="icono-seccion" aria-hidden="true">✅</span>
+                <h2 class="titulo-seccion">Confirmar Asistencia</h2>
+                <p class="texto-secundario">
+                    Por favor, confírmanos tu asistencia antes de la fecha para organizar todo con mucho cariño.
+                </p>
+                <a
+                    href="https://wa.me/526122188016?text=¡Hola!%20Confirmo%20mi%20asistencia%20a%20la%20boda%20de%20Raúl%20y%20Elvia."
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="btn btn-rsvp"
+                    aria-label="Confirmar asistencia vía WhatsApp para la boda de Raúl y Elvia"
+                >
+                    <span class="btn-icono" aria-hidden="true">💬</span>
+                    Confirmar Asistencia
+                </a>
+            </div>
+        </section>
+
+        <!-- ====== PIE DE PÁGINA (FOOTER) ====== -->
+        <footer class="seccion-footer fade-in-observer">
+            <div class="contenedor-centrado">
+                <p class="footer-nombres">Raúl Antonio Guzmán Sánchez & Elvia Montoya Garcia</p>
+                <div class="footer-divisor" aria-hidden="true">
+                    <span class="divisor-linea"></span>
+                    <span class="divisor-icono">✦</span>
+                    <span class="divisor-linea"></span>
+                </div>
+                <p class="footer-fecha">26 de Junio del 2026</p>
+                <p class="footer-despedida">¡Nos vemos pronto!</p>
+            </div>
+        </footer>
+    </main>
+
+    <!-- Elemento de audio para la música de fondo -->
+    <audio id="audio-boda" preload="none" loop>
+        <source src="assets/audio/cancion.mp3" type="audio/mpeg">
+        Tu navegador no soporta el elemento de audio.
+    </audio>
+
+    <!-- Script principal -->
+    <script src="js/main.js"></script>
+</body>
+</html>
