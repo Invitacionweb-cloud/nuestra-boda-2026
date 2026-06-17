@@ -20,7 +20,6 @@
 <body>
 
     <!-- ==================== PANTALLA DE BIENVENIDA: SOBRE VIRTUAL ==================== -->
-    <!-- Esta sección cubre el viewport completo y actúa como "sobre cerrado" -->
     <div id="sobre-overlay" class="sobre-overlay" role="dialog" aria-modal="true" aria-label="Invitación de boda - Abrir sobre">
         <div class="sobre-container">
             <!-- Sobre decorativo con animación -->
@@ -39,13 +38,11 @@
     </div>
 
     <!-- ==================== BOTÓN FLOTANTE DE MÚSICA (PLAY/PAUSE) ==================== -->
-    <!-- Se oculta inicialmente y se muestra al abrir la invitación -->
     <button id="btn-musica" class="btn-musica-flotante" aria-label="Reproducir o pausar música" title="Reproducir / Pausar música">
         <span class="icono-musica">🎵</span>
     </button>
 
     <!-- ==================== CONTENIDO PRINCIPAL DE LA INVITACIÓN ==================== -->
-    <!-- Se revela tras la animación del sobre; inicialmente oculto con display:none -->
     <main id="contenido-principal" class="contenido-principal">
 
         <!-- ====== SECCIÓN HERO: FOTO PRINCIPAL, NOMBRES Y FRASE ====== -->
@@ -77,7 +74,7 @@
             </div>
         </section>
 
-        <!-- ====== SECCIÓN: FECHA Y HORA  ====== -->
+        <!-- ====== SECCIÓN: FECHA Y HORA ====== -->
         <section class="seccion seccion-fecha fade-in-observer" id="seccion-fecha">
             <div class="contenedor-centrado">
                 <span class="icono-seccion" aria-hidden="true"></span>
@@ -135,13 +132,13 @@
                 <div class="galeria-item galeria-item-4">
                     <img src="assets/img/galeria-4.jpg" alt="Momento especial de Raúl y Elvia - Foto 4" loading="lazy">
                 </div>
-                <!-- ======= <div class="galeria-item galeria-item-5">
+                <!--<div class="galeria-item galeria-item-5">
                     <img src="assets/img/galeria-5.jpg" alt="Momento especial de Raúl y Elvia - Foto 5" loading="lazy">
                 </div>
                 <div class="galeria-item galeria-item-6">
                     <img src="assets/img/galeria-6.jpg" alt="Momento especial de Raúl y Elvia - Foto 6" loading="lazy">
-                </div> ======= -->
-            </div>
+                </div>
+            </div>-->
         </section>
 
         <!-- ====== SECCIÓN: REGALO EN EFECTIVO ====== -->
@@ -179,6 +176,22 @@
                     <span class="btn-icono" aria-hidden="true">💬</span>
                     Confirmar Asistencia
                 </a>
+            </div>
+        </section>
+
+        <!-- ====== SECCIÓN: CÓDIGO DE VESTIMENTA (NUEVA) ====== -->
+        <section class="seccion seccion-vestimenta fade-in-observer" id="seccion-vestimenta">
+            <div class="contenedor-centrado">
+                <span class="icono-seccion" aria-hidden="true">🖤</span>
+                <h2 class="titulo-seccion">Código de Vestimenta</h2>
+                <div class="tarjeta-regalo"> <!-- Reutilizamos la clase tarjeta-regalo para un contenedor elegante -->
+                    <p class="texto-regalo">
+                        Para esta ocasión tan especial, te sugerimos vestir de <strong>color negro</strong>.
+                    </p>
+                    <p class="texto-regalo-secundario">
+                        Elegancia y estilo en una noche inolvidable.
+                    </p>
+                </div>
             </div>
         </section>
 
